@@ -44,10 +44,10 @@ def allowed_file(file:UploadFile):
     filename = file.filename
     """Check if the file has allowed extension"""
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
-def resize_image(image, size,user_id):
+def resize_image(image, size, user_id):
     with Image.open(image) as img:
         resized_img = img.resize(size)
-        # Convert image to bytes
-        output_path = f"/tmp/{str(user_id)+"."+image.split('.')[1]}"
+        ext = image.split('.')[-1]  # safer than [1]
+        output_path = f"/tmp/{str(user_id)}.{ext}"
         resized_img.save(output_path)
         return output_path
