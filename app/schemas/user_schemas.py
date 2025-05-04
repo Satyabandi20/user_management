@@ -12,9 +12,9 @@ from app.utils.nickname_gen import generate_nickname
 def validate_url(url: Optional[str]) -> Optional[str]:
     if url is None:
         return url
-    url_regex = r'^https?:\/\/[^\s/$.?#].[^\s]*\.(jpg|jpeg|png)$'
+    url_regex = r'^https?:\/\/[^\s/$.?#].[^\s]*$'
     if not re.match(url_regex, url, re.IGNORECASE):
-        raise ValueError('Invalid URL format or unsupported file extension. Only .jpg, .jpeg, and .png are allowed.')
+        raise ValueError('Invalid URL format.')
     return url
 
 class UserBase(BaseModel):
